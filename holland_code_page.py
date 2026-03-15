@@ -134,9 +134,13 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
     transition: all .14s !important;
     white-space: nowrap !important;
 }
-/* Hide the radio dot */
+/* Shrink the radio dot to nothing (keep input in DOM for clicks) */
 .stRadio [role="radiogroup"] label > div:first-child {
-    display: none !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
 }
 /* Selected */
 .stRadio [role="radiogroup"] label:has(input:checked) {
@@ -144,6 +148,11 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
     color: #fff !important;
     border-color: #111827 !important;
     font-weight: 600 !important;
+}
+.stRadio [role="radiogroup"] label:has(input:checked) p,
+.stRadio [role="radiogroup"] label:has(input:checked) span,
+.stRadio [role="radiogroup"] label:has(input:checked) div {
+    color: #fff !important;
 }
 /* Hover (unselected) */
 .stRadio [role="radiogroup"] label:not(:has(input:checked)):hover {
@@ -616,7 +625,7 @@ def _render_quiz(step):
     answers = st.session_state.get("_answers", {})
     for i, q in enumerate(qs):
         key = f"{t}_{i}"
-        if key not in st.session_state:
+        if f"_ans_{key}" not in st.session_state:
             st.session_state[f"_ans_{key}"] = answers.get(key, 3)
         q_num = (step-1)*8 + i + 1
         _scale_selector(key, q_num, q)
