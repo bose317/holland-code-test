@@ -120,6 +120,8 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
 }
 .stRadio [role="radiogroup"] label {
     flex: 1 1 0% !important;
+    width: calc(20% - 5px) !important;
+    max-width: calc(20% - 5px) !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
     display: flex !important;
@@ -133,7 +135,7 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
     cursor: pointer !important;
     background: #fff !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.72rem !important;
+    font-size: 0.65rem !important;
     font-weight: 500 !important;
     color: #6B7280 !important;
     transition: all .14s !important;
@@ -152,7 +154,7 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
 .stRadio [role="radiogroup"] label > div:last-child {
     width: 100% !important;
     text-align: center !important;
-    font-size: 0.72rem !important;
+    font-size: 0.65rem !important;
     line-height: 1.25 !important;
 }
 /* Selected */
@@ -544,7 +546,7 @@ def _scale_selector(key, q_num, question):
     # Question label
     st.markdown(
         f'<div style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden;margin-bottom:10px">'
-        f'<div style="padding:14px 18px 13px;font-size:.875rem;font-weight:500;color:#111827;line-height:1.55;'
+        f'<div style="padding:14px 18px 13px;font-size:1rem;font-weight:500;color:#111827;line-height:1.55;'
         f'display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid #F3F4F6">'
         f'<span style="display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;'
         f'border-radius:5px;background:#F3F4F6;color:#6B7280;font-size:.68rem;font-weight:700;flex-shrink:0">{q_num}</span>'
