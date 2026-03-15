@@ -112,17 +112,14 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
 .stRadio,
 .stRadio > div { margin-top: 0 !important; width: 100% !important; }
 .stRadio [role="radiogroup"] {
-    display: flex !important;
-    flex-direction: row !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
     gap: 6px !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
 .stRadio [role="radiogroup"] label {
-    flex: 1 1 0% !important;
-    width: calc(20% - 5px) !important;
-    max-width: calc(20% - 5px) !important;
-    min-width: 0 !important;
+    width: 100% !important;
     box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
@@ -130,12 +127,12 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
     text-align: center !important;
     border: 1px solid #E5E7EB !important;
     border-radius: 8px !important;
-    padding: 9px 2px !important;
+    padding: 10px 4px !important;
     margin: 0 !important;
     cursor: pointer !important;
     background: #fff !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.65rem !important;
+    font-size: 0.62rem !important;
     font-weight: 500 !important;
     color: #6B7280 !important;
     transition: all .14s !important;
@@ -154,7 +151,7 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
 .stRadio [role="radiogroup"] label > div:last-child {
     width: 100% !important;
     text-align: center !important;
-    font-size: 0.65rem !important;
+    font-size: 0.62rem !important;
     line-height: 1.25 !important;
 }
 /* Selected */
