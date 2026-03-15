@@ -109,38 +109,51 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
 }
 
 /* ── Scale radio (5-option horizontal selector) ─────────── */
-.stRadio > div { margin-top: 0 !important; }
+.stRadio,
+.stRadio > div { margin-top: 0 !important; width: 100% !important; }
 .stRadio [role="radiogroup"] {
     display: flex !important;
     flex-direction: row !important;
     gap: 6px !important;
     width: 100% !important;
+    box-sizing: border-box !important;
 }
 .stRadio [role="radiogroup"] label {
-    flex: 1 !important;
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    text-align: center !important;
     border: 1px solid #E5E7EB !important;
     border-radius: 8px !important;
-    padding: 9px 4px !important;
+    padding: 9px 2px !important;
     margin: 0 !important;
     cursor: pointer !important;
     background: #fff !important;
     font-family: 'Inter', sans-serif !important;
-    font-size: 0.82rem !important;
+    font-size: 0.72rem !important;
     font-weight: 500 !important;
     color: #6B7280 !important;
     transition: all .14s !important;
-    white-space: nowrap !important;
+    overflow: hidden !important;
+    position: relative !important;
 }
-/* Shrink the radio dot to nothing (keep input in DOM for clicks) */
+/* Shrink the radio dot (keep input in DOM for clicks) */
 .stRadio [role="radiogroup"] label > div:first-child {
     position: absolute !important;
     width: 1px !important;
     height: 1px !important;
     overflow: hidden !important;
     opacity: 0 !important;
+}
+/* Text container: fill width and center */
+.stRadio [role="radiogroup"] label > div:last-child {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
 }
 /* Selected */
 .stRadio [role="radiogroup"] label:has(input:checked) {
