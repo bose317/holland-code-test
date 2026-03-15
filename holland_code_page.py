@@ -247,7 +247,7 @@ HOLLAND_QUESTIONS = {
     "C":["Generate the monthly payroll checks for an office","Inventory supplies using a hand-held computer","Use a computer program to generate customer bills","Maintain employee records","Compute and record statistical and other numerical data","Operate a calculator","Handle customers bank transactions","Keep shipping and receiving records"],
 }
 
-SCALE_LABELS = ["Dislike","Slightly Dislike","Neutral","Slightly Enjoy","Enjoy"]
+SCALE_LABELS = ["1 – Dislike","2 – Slightly","3 – Neutral","4 – Somewhat","5 – Enjoy"]
 
 _TYPE_NAMES = {"R":"Realistic","I":"Investigative","A":"Artistic","S":"Social","E":"Enterprising","C":"Conventional"}
 
