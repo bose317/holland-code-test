@@ -108,39 +108,48 @@ div[data-testid="stVerticalBlock"] > div { gap: 0 !important; }
     border-color: #D1D5DB !important;
 }
 
-/* ── Scale buttons (5 columns) ─────────────────────────── */
-.scale-btn-selected > button {
-    background: #111827 !important;
-    color: #fff !important;
-    border: 1.5px solid #111827 !important;
-    border-radius: 8px !important;
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 0.68rem !important;
-    padding: 8px 2px !important;
+/* ── Scale radio (5-option horizontal selector) ─────────── */
+.stRadio > div { margin-top: 0 !important; }
+.stRadio [role="radiogroup"] {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
     width: 100% !important;
-    line-height: 1.35 !important;
-    cursor: pointer !important;
-    transition: all .14s !important;
 }
-.scale-btn-unselected > button {
-    background: #fff !important;
-    color: #9CA3AF !important;
+.stRadio [role="radiogroup"] label {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     border: 1px solid #E5E7EB !important;
     border-radius: 8px !important;
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 500 !important;
-    font-size: 0.68rem !important;
-    padding: 8px 2px !important;
-    width: 100% !important;
-    line-height: 1.35 !important;
+    padding: 9px 4px !important;
+    margin: 0 !important;
     cursor: pointer !important;
+    background: #fff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    color: #6B7280 !important;
     transition: all .14s !important;
+    white-space: nowrap !important;
 }
-.scale-btn-unselected > button:hover {
+/* Hide the radio dot */
+.stRadio [role="radiogroup"] label > div:first-child {
+    display: none !important;
+}
+/* Selected */
+.stRadio [role="radiogroup"] label:has(input:checked) {
+    background: #111827 !important;
+    color: #fff !important;
+    border-color: #111827 !important;
+    font-weight: 600 !important;
+}
+/* Hover (unselected) */
+.stRadio [role="radiogroup"] label:not(:has(input:checked)):hover {
     background: #F9FAFB !important;
     color: #374151 !important;
-    border-color: #E5E7EB !important;
+    border-color: #D1D5DB !important;
 }
 
 /* ── Select / textarea ─────────────────────────────────── */
@@ -506,8 +515,10 @@ def _radar_chart(scores):
 
 # ── Scale selector widget ───────────────────────────────────────────
 def _scale_selector(key, q_num, question):
-    """Render a question card with 5 custom-styled scale buttons."""
-    saved = st.session_state.get(f"_ans_{key}", 3)
+    """Render a question card with a horizontal radio scale."""
+    # Initialize default
+    if f"_ans_{key}" not in st.session_state:
+        st.session_state[f"_ans_{key}"] = 3
     # Question label
     st.markdown(
         f'<div style="background:#fff;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden;margin-bottom:10px">'
@@ -518,18 +529,14 @@ def _scale_selector(key, q_num, question):
         f'{question}</div></div>',
         unsafe_allow_html=True,
     )
-    # 5 button columns inside a styled wrapper
-    cols = st.columns(5, gap="small")
-    for i, (col, label) in enumerate(zip(cols, SCALE_LABELS)):
-        score = i + 1
-        is_sel = saved == score
-        with col:
-            cls = "scale-btn-selected" if is_sel else "scale-btn-unselected"
-            st.markdown(f'<div class="{cls}">', unsafe_allow_html=True)
-            if st.button(label, key=f"_sb_{key}_{i}", use_container_width=True):
-                st.session_state[f"_ans_{key}"] = score
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
+    st.radio(
+        label="",
+        options=[1, 2, 3, 4, 5],
+        format_func=lambda x: SCALE_LABELS[x - 1],
+        horizontal=True,
+        key=f"_ans_{key}",
+        label_visibility="collapsed",
+    )
 
 # ── Landing page ───────────────────────────────────────────────────
 def _render_landing():
